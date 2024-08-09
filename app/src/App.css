@@ -1,0 +1,23 @@
+.flex-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+.flex-container p {
+    margin: 0;
+}
+
+.product-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
