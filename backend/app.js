@@ -16,7 +16,7 @@ app.use(bodyparser.json())
 app.use(cors())
 
 mongoose
-.connect("mongodb+srv://videsh:videsh@cluster0.gdpe4dg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+.connect(process.env.MONGO_URI)
 .then(()=>{
     console.log("Connected to MongoDB")
 })

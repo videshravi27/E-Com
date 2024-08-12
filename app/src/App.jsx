@@ -11,6 +11,8 @@ import Signup from "./components/Signup";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { setToken } from "./redux/userSlice";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Navbar from "./components/Navbar";
 
 const App = () => {
   // const [cart, setCart] = useState([])
@@ -20,20 +22,20 @@ const App = () => {
     dispatch(setToken(token))
   })
   return(
-    // <Provider store={store}>
-      <BrowserRouter>
-      <ToastContainer />
-        <Routes>
-          <Route path="/" element={<HomeLayout /> }>
-            <Route path="/" element={<Products />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    // </Provider>
+    <>
+  <BrowserRouter>
+    <ToastContainer />
+    <Navbar />
+    <Routes>
+      <Route path="/" element={<Products />} />
+      <Route element={<ProtectedRoute /> } >
+        <Route path="/cart" element={<Cart />} />
+      </Route>
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+    </Routes>
+  </BrowserRouter>
+  </>
   )
 }
-
 export default App;

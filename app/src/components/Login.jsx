@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { setToken } from "../redux/userSlice";
 import { useDispatch } from "react-redux";
@@ -10,6 +10,8 @@ const Login = () => {
     const [password, setPassword] = useState("")
     const navigate = useNavigate()
     const dispatch = useDispatch()
+    const [searchParams, setSearchParams] = useSearchParams()
+    const returnTo = searchParams.get("return_to") || "/";
 
     const handleLogin = async (e) => {
         e.preventDefault()
@@ -25,6 +27,7 @@ const Login = () => {
             dispatch(setToken(res.data.token));
             localStorage.setItem("token", res.data.token);
             toast.success("Login successful")
+            navigate(returnTo)
         }catch(err){
             toast.error(err.response.data.message);
             console.log(err);
